@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkol2gx04stmd"]
+
+[ext_resource type="Texture2D" uid="uid://c600kea3unkem" path="res://assets/cards/cards_map_10_20px.png" id="1_0p2v6"]
+
+[node name="CardSprite" type="Sprite2D"]
+texture = ExtResource("1_0p2v6")
+hframes = 13
+vframes = 4

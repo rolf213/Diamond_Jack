@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmw2njgaa2lm6"]
+
+[ext_resource type="Script" path="res://scripts/Main.cs" id="1_d21p0"]
+[ext_resource type="Script" path="res://scripts/StateMachine.cs" id="2_2bh3f"]
+[ext_resource type="Script" path="res://scripts/GameRunner.cs" id="3_teqs8"]
+[ext_resource type="Script" path="res://scripts/Player.cs" id="4_f8rjf"]
+[ext_resource type="Script" path="res://scripts/RealPlayer.cs" id="5_iy431"]
+
+[node name="Root" type="Node2D"]
+
+[node name="Main" type="Node2D" parent="."]
+script = ExtResource("1_d21p0")
+
+[node name="StateMachine" type="Node2D" parent="Main"]
+script = ExtResource("2_2bh3f")
+
+[node name="GameRunner" type="Node2D" parent="Main/StateMachine"]
+script = ExtResource("3_teqs8")
+
+[node name="Player" type="Node2D" parent="Main"]
+script = ExtResource("4_f8rjf")
+
+[node name="RealPlayer" type="Node2D" parent="Main/Player"]
+script = ExtResource("5_iy431")
+
+[node name="Camera2D" type="Camera2D" parent="Main/Player/RealPlayer"]
+zoom = Vector2(5, 5)
