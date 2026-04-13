@@ -14,7 +14,7 @@ public partial class GameRunner : Main
 	private int ActiveEntitiesIndex = 3;
 	private Player[] ActiveEntities = {table, player1, enemy};
 	
-	public void InitializePlayers(){
+	public void Initialize(){
 		AddChild(player1);
 		player1.spriteY = 40f;
 		player1.SayMyName("player1");
@@ -26,6 +26,7 @@ public partial class GameRunner : Main
 		AddChild(table);
 		table.spriteY = 0f;
 		table.SayMyName("table");
+		
 	}
 	
 	public void Reinit52Deck(){
@@ -95,11 +96,15 @@ public partial class GameRunner : Main
 		return ActiveEntities[0].HowManyCards();
 	}
 	
-	public void CheckCards(){
+	public string CheckCards(){
 		Hand[] allHands = new Hand[ActiveEntitiesIndex];
 		int highestHand = -1;
 		int[] winners = new int[ActiveEntitiesIndex];
 		int winnersIndex = 0;
+		bool addAnd = false;
+		
+		string outText = "";
+		
 		for(int i=1; i<ActiveEntitiesIndex; i++){
 			allHands[i] = ActiveEntities[i].CalculateHandValue();
 			if(allHands[i].GetHandType() > highestHand){
@@ -116,11 +121,15 @@ public partial class GameRunner : Main
 		}
 		for(int i=1; i<ActiveEntitiesIndex; i++){
 			if(winners[i]>0){
-				GD.Print(ActiveEntities[winners[i]].GetMyName(), " is a winner");
-				GUI testGUI = new GUI();
-				testGUI.test();
+				if(addAnd){
+					outText = outText + "and ";
+				}
+				outText = outText + ActiveEntities[winners[i]].GetMyName() + " ";
+				addAnd = true;
 			}
 		}
+		outText = outText + "is a winner";
+		return outText;
 	}
 	
 	

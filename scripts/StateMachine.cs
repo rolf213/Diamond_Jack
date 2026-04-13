@@ -6,6 +6,8 @@ public partial class StateMachine : GameRunner
 {
 	private int state = 1;
 	
+	private static GUI GameGUI = new GUI();
+	
 	[Signal]
 	public delegate void KeyEventHandler(string pressedKey);
 	//nazwa: "Key"EventHandler ta sama co w Emit 
@@ -33,7 +35,8 @@ public partial class StateMachine : GameRunner
 	
 	
 	public override void _Ready(){
-		InitializePlayers();
+		Initialize();
+		AddChild(GameGUI);
 	}
 	
 	public override void _Process(double delta){
@@ -89,13 +92,14 @@ public partial class StateMachine : GameRunner
 			case 5:
 				// Porównaj karty
 				//dodaj wariant ostatecznej rozgrywki
-				CheckCards();
+				GameGUI.CreateTextBox(CheckCards());
 				PressToChangeState("Z", 6);
 				break;
 				
 				
 			case 6:
 				// Zabierz karty
+				GameGUI.DeleteTextBox();
 				TakeAllCards();
 				PressToChangeState("Z", 2);
 				break;

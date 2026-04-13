@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8n4wk2lu4gyj"]
+
+[sub_resource type="SystemFont" id="SystemFont_nnb1c"]
+font_names = PackedStringArray("Monospace")
+multichannel_signed_distance_field = true
+
+[sub_resource type="Theme" id="Theme_tkofx"]
+default_font = SubResource("SystemFont_nnb1c")
+
+[node name="TextBox" type="RichTextLabel"]
+offset_left = -115.0
+offset_top = -65.0
+offset_right = 115.0
+offset_bottom = 65.0
+theme = SubResource("Theme_tkofx")
+text = "Placeholder"
