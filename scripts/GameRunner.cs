@@ -96,8 +96,30 @@ public partial class GameRunner : Main
 	}
 	
 	public void CheckCards(){
-		for(int i=0; i<ActiveEntitiesIndex; i++){
-			ActiveEntities[i].CalculateHandValue();
+		Hand[] allHands = new Hand[ActiveEntitiesIndex];
+		int highestHand = -1;
+		int[] winners = new int[ActiveEntitiesIndex];
+		int winnersIndex = 0;
+		for(int i=1; i<ActiveEntitiesIndex; i++){
+			allHands[i] = ActiveEntities[i].CalculateHandValue();
+			if(allHands[i].GetHandType() > highestHand){
+				highestHand = allHands[i].GetHandType();
+				winnersIndex = 1;
+				winners = new int[ActiveEntitiesIndex];
+				winners[winnersIndex] = i;
+			}
+			else if(allHands[i].GetHandType() == highestHand){
+				winnersIndex = winnersIndex + 1;
+				winners[winnersIndex] = i;
+			}
+			GD.Print(ActiveEntities[i].GetMyName(), " has ", HandTypes(allHands[i].GetHandType()), " of ", Figures(allHands[i].GetRank()), " with ", Figures(allHands[i].GetKicker()), " kicker");
+		}
+		for(int i=1; i<ActiveEntitiesIndex; i++){
+			if(winners[i]>0){
+				GD.Print(ActiveEntities[winners[i]].GetMyName(), " is a winner");
+				GUI testGUI = new GUI();
+				testGUI.test();
+			}
 		}
 	}
 	
